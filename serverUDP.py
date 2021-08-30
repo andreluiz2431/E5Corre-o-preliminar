@@ -47,14 +47,14 @@ if(len(sys.argv) > 1):
                     if(nHash == hashcod): # Verifica se o numero de sequencia e o codigo de verifcação condizem com o esperado
               
                         arqSave.writelines(cargaUtil) # Escreve a mensagem contida no frame no arquivo de saída
-                        socketServer.sendto(str.encode('ACK'),clientAddress)#envia para o transmissor que tudo foi verificado e está OK          
+                        socketServer.sendto(str.encode('ACK'), clientAddress) # envia para o transmissor que tudo foi verificado e está OK          
                     
                     else: 
                       
-                        socketServer.sendto(str.encode('NACK'),clientAddress) #Envia para o transmissor que houve um NACK
+                        socketServer.sendto(str.encode('NACK'), clientAddress) # envia para o transmissor que houve um NACK
 
                 else:
 
-                  socketServer.sendto(str.encode('NACK'),clientAddress) #Envia para o transmissor que houve um NACK
+                  socketServer.sendto(str.encode('NACK'), clientAddress) #Envia para o transmissor que houve um NACK
 
 socketServer.close()

@@ -61,6 +61,9 @@ if(len(sys.argv) > 1):
                         elif(request == b'NACK') :
                             print(request.decode('utf-8')) # NACK
                             print("Falha no frame: "+str(nSeq)) # frame deu erro
+                            print("Renviando frame...")
+                            nSeq = 1
+                            i = 0
                         
                     except:
                         print("Err: Timeout") # excedeu o tempo e fecha e para de enviar os frames
