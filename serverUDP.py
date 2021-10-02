@@ -23,9 +23,13 @@ if(len(sys.argv) > 1):
 
         hash = hashlib.md5()
 
+        
+
         print('Servidor ligado...')
 
         while 1:
+            
+            
             message, clientAddress = socketServer.recvfrom(2048) # recebendo mensagens do cliente
 
             # se receber mensagem de confirmação do cliente que os dados foram enviados
@@ -37,7 +41,9 @@ if(len(sys.argv) > 1):
                 msgSend = message.decode('utf-8').split(' ',2) # Divide a string nos dois primeiros espaços
                 nSeq = msgSend[0] # Recebe o numero de sequencia provinda do transmissor
                 hashcod = msgSend[1]# Recebe o codigo de verificação do transmissor
-                cargaUtil = msgSend[2]# Recebe a carga util provinda do transmissor    
+                cargaUtil = msgSend[2]# Recebe a carga util provinda do transmissor   
+
+                
 
                 hash.update(nSeq.encode())
                 nHash = hash.hexdigest() # Transforma em hash md5
@@ -51,7 +57,7 @@ if(len(sys.argv) > 1):
                     
                     else: 
                       
-                        socketServer.sendto(str.encode('NACK'), clientAddress) # envia para o transmissor que houve um NACK
+                        socketServer.sendto(str.encode('NACK '+str(nSeq)), clientAddress) # envia para o transmissor que houve um NACK
 
                 else:
 
